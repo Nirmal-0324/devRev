@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ByteBooks</title>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+  </head>
+ <style>
+    button {
+    background-color: rgb(77, 176, 80);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    max-width: 150px;
+    }
+ </style>
+  <body>
+
+    <div class="title-bg">
+      <h1>ByteBooks</h1>
+    </div>
+    <h2 class="will" style="text-align: center;color:rgb(249, 230, 194);font-size: 30px">Enrich user's library</h2>
+    <form id="add-book-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" placeholder="Enter book title">
+
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" placeholder="Enter book author">
+
+      <label for="genre">Genre:</label>
+      <input type="text" id="genre" name="genre" placeholder="Enter book genre">
+
+      <label for="image">Image path:</label>
+      <input type="text" id="image" name="image" placeholder="Enter image path">
+
+      <label for="pdf">PDF File Path:</label>
+      <input type="text" id="pdf" name="pdf" placeholder="Enter PDF file path">
+
+      <button id="add-book-btn" type="submit">Add Book</button>
+    </form>
+    <div class="admin-text">
+     <div style="font-size: 40px;color:#032238; ">Hello, Admin!</div>
+     <a href="home.html">
+     <button name="submit" style="margin: 10px;margin-left: 80px;" >Home</button></div>
+     </a>
+    <script src="js/admin.js"></script>
+
+  </body>
+</html>

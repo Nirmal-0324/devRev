@@ -1,0 +1,107 @@
+
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+background-image: url('images/bg2.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+
+form {
+max-width: 500px;
+margin: 0 auto;
+background-color: #fff;
+opacity: 0.8;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+label {
+display: block;
+margin-top: 10px;
+font-weight: bold;
+}
+
+input[type="text"] {
+background-color: white;
+border: none; 
+padding: 5px; 
+}
+a {
+  color: black;
+}
+
+input {
+display: block;
+width: 100%;
+padding: 10px;
+border-radius: 5px;
+border: none;
+margin-bottom: 20px;
+border-color: black;
+}
+
+.book-link {
+  color: black;
+}
+button[type="submit"] {
+
+background-color: #0099ff;
+color: #fff;
+border: none;
+border-radius: 5px;
+padding: 10px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+background-color: #0077cc;
+}
+
+.title-bg {
+margin: 0px auto 0 auto;
+max-width: fit-content;
+max-height: fit-content;
+text-align: center;
+background-color: rgb(33, 66, 88);
+color: #fff;
+border: black;
+border-radius: 30px;
+padding: 10px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+  }
+  
+  form {
+    max-width: 500px;
+    margin: 50px auto 0 auto;
+    background-color: #fff;
+    opacity: 0.8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  
+  .admin-text {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  button {
+    background-color: rgb(77, 176, 80);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    max-width: 150px;
+    }

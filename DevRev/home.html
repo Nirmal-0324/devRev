@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ByteBooks</title>
+  <link rel="stylesheet" type="text/css" href="css/home1.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header>
+    <h1>ByteBooks</h1>
+    <nav>
+      <ul>
+        <li class="home"><a href="home.html">Home</a></li>
+        <li><a href="#" id="favorites-btn">Favorites</a></li>
+        <li><a href="#" id="history-btn">History</a></li>
+        <li class="menu"><a href="#about-section">About</a></li>
+     
+    <div id="info" >
+    <div id="login-name"></div>
+    <div type="text" id="logout-btnn"></div>
+  </div>
+</ul>
+</nav>
+  </header>
+  <main>
+    <div class="welcome">
+    <div style="color: rgb(221, 167, 96);font-size: 25px;font-weight: bold;margin-bottom: 10px;">Welcome to our virtual libray!</div>
+    <div style="color: antiquewhite;margin-bottom: 10px;">Browse through our extensive selection of books...</div>
+    </div>
+    <form id="search-form">
+      <input type="text" id="search-bar" placeholder="Search for books...">
+      <button type="submit" id="search-btn">Search</button>
+    </form>
+      <section id="book-previews">
+        <template class="book-card-template">
+          <div class="book-link">
+            <div class="book-card">
+            <img class="book-image" src="" alt="Book Cover">
+            <div class="book-details">
+              <h3 class="book-title"></h3>
+              <p class="book-author"></p>
+              <p class="book-description"></p>
+            </div>
+          </div>
+          </div>
+        </template>
+      </section>
+     
+    </main>
+<section id="about-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div style="font-size: 60px;color: rgb(162, 175, 26);">About</div>
+        <p>Welcome to our virtual library, where knowledge and information are just a click away. Our collection includes thousands of books, journals, and other resources on a wide range of topics, from science and technology to history and literature. Our mission is to provide access to quality educational materials to anyone, anywhere, at any time. We are constantly updating our collection to ensure that our users have the latest and most relevant resources available. Join our community of learners and discover a world of knowledge at your fingertips!</p>
+         <ul class="list-unstyled" style="color: gray;">
+          <li><i class="fa fa-phone"></i> Phone: +1 123-456-7890</li>
+          <li><i class="fa fa-envelope"></i> Email: info@virtuallibrary.com</li>
+          <li><i class="fa fa-map-marker"></i> Address: 123 Main St, Anytown USA</li>
+        </ul>
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+          <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="library-logo.png" alt="Virtual Library Logo" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+const bookList = document.querySelector('#book-previews');
+const bookCardTemplate = document.querySelector('.book-card-template');
+
+fetch('books.json')
+  .then(response => response.json())
+  .then(data => {
+    data.slice(9, 18).forEach(book => { 
+      const bookCard = bookCardTemplate.cloneNode(true).content;
+    bookCard.querySelector('.book-image').src = book.image;
+     bookCard.querySelector('.book-title').textContent = book.title;
+      bookCard.querySelector('.book-author').textContent = `By ${book.author}`;
+      bookCard.querySelector('.book-description').textContent = book.description;
+    const bookLink = bookCard.querySelector('.book-link');
+      bookLink.addEventListener('click', () => window.open(`books/${book.pdf}.pdf`, '_blank'));
+      bookList.appendChild(bookCard);
+    });
+  })
+  .catch(error => console.log(error));
+
+  </script>
+</body>
+  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+   $(document).ready(function() {
+    $.ajax({
+      url: 'get_user.php',
+      success: function(response) {
+        var username = response.username;
+        var isLoggedIn = response.isLoggedIn;
+        if (isLoggedIn) {
+          $('#login-name').html('Hello, ' + username);
+          $('#logout-btnn').append('<button id="logout-btn">Logout</button>');
+        } else {
+          $('#logout-btnn').html('<a href="login.php" class = "button" >Login</a>');
+        }
+      }
+    });
+
+    $(document).on('click', '#logout-btn', function() {
+      $.ajax({
+        url: 'get_user.php',
+        data: {logout: true},
+        method: 'POST',
+        success: function(response) {
+          location.reload();
+        }
+      });
+    });
+
+    $(document).on('click', '#favorites-btn', function() {
+      $.ajax({
+        url: 'get_user.php',
+        success: function(response) {
+          var user_id = response.user_id;
+          $.ajax({
+            url: 'get_favorite.php',
+            data: {user_id: user_id},
+            success: function(response) {
+              displayBooks(response);
+            }
+          });
+        }
+      });
+    });
+
+    $(document).on('click', '#history-btn', function() {
+      $.ajax({
+        url: 'get_user.php',
+        success: function(response) {
+          var user_id = response.user_id;
+          $.ajax({
+            url: 'get_history.php',
+            data: {user_id: user_id},
+            success: function(response) {
+              displayBooks(response);
+            }
+          });
+        }
+      });
+    });
+
+    function displayBooks(books) {
+  var bookPreviews = $('#book-previews');
+  bookPreviews.empty();
+  
+  if (books.length > 0) {
+    for (var i = 0; i < books.length; i++) {
+      var book = books[i];
+      var bookCard = $('<div class="book-card"></div>');
+      var img = $('<img src="' + book.image + '">');
+      var h3 = $('<h3>' + book.title + '</h3>');
+      var p1 = $('<p>' + book.author + '</p>');
+      var p2 = $('<p>' + book.description + '</p>');
+      bookCard.append(img);
+      bookCard.append(h3);
+      bookCard.append(p1);
+      bookCard.append(p2);
+      bookPreviews.append(bookCard);
+    }
+  } else {
+    bookPreviews.html('<h4>No books found</h4>');
+  }
+}
+
+});
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.querySelector('#search-form');
+    const searchBar = document.querySelector('#search-bar');
+    
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const searchTerm = document.getElementById('search-bar').value;
+      const searchUrl = `http://localhost/phpscript2/books/search.html?query=${encodeURIComponent(searchTerm)}`;
+      window.location.href = searchUrl
+    });
+  });
+
+
+  </script>
+</html>

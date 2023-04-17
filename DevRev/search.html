@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/search.css">
+    <script src="js/script1.js"></script> 
+    <title>ByteBooks</title>
+    
+  </head>
+  <body>
+    <header style="display: flex; justify-content: space-between; align-items: center; background-color: rgba(27, 53, 79, 0.95); color: #fff; padding: 10px;">
+      <div class="he1"> ByteBooks </div>
+      <a href="home.html">
+      <button name="submit" style="margin-right: 20px;">Home</button>
+      </a>
+    </header>
+    <main>
+      <form id="search-form">
+        <input type="text" id="search-bar" placeholder="Search by title...">
+        <div class="filter-menu">
+          <label for="author-filter" style="margin-top: 20px;margin-left: 10px;color:  rgb(221, 167, 96)">Filter by Author:</label>
+          <div class="af" style="margin-top: 10px;margin-left: 5px;margin-right: 30px;">
+          <select id="author-filter">
+            <option value="">All Authors</option>
+          </select>
+          </div>
+          <div class="gf1">
+          <label for="genre-filter"  style="margin-top: 20px; margin-left: 10px;color:  rgb(221, 167, 96)" >Filter by Genre:</label>
+          </div>
+          <div class="gf" style="margin-top: 10px; margin-left: 5px;">
+            <select id="genre-filter">
+              <option value="">All Genres</option>
+            </select>
+            </div>
+        </div>
+      </form>
+      <div id="book-container"></div>
+    </main>
+    <script src="js/script.js"></script>
+    
+ 
+
+  </body>
+</html>
